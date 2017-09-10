@@ -21,6 +21,8 @@
             _dbConnection = dbConnection;
         }
 
+        public IDbConnection DbConnection => _dbConnection;
+
         public virtual Task<IEnumerable<dynamic>> QueryAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) => _dbConnection.QueryAsync(sql, param, transaction, commandTimeout, commandType);
         public virtual Task<IEnumerable<dynamic>> QueryAsync(CommandDefinition command) => _dbConnection.QueryAsync(command);
         public virtual Task<dynamic> QueryFirstAsync(CommandDefinition command) => _dbConnection.QueryFirstAsync(command);
