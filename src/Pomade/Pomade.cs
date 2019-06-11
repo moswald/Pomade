@@ -70,7 +70,7 @@
         public virtual async Task<AsyncGridReader> QueryMultipleAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) => new AsyncGridReader(await _dbConnection.QueryMultipleAsync(sql, param, transaction, commandTimeout, commandType));
         public virtual async Task<AsyncGridReader> QueryMultipleAsync(CommandDefinition command) => new AsyncGridReader(await _dbConnection.QueryMultipleAsync(command));
 
-        public void Dispose() => _dbConnection?.Dispose();
+        public virtual void Dispose() => _dbConnection?.Dispose();
 
         public class AsyncGridReader : IDisposable
         {
@@ -102,7 +102,7 @@
             public virtual Task<T> ReadSingleAsync<T>() => _gridReader.ReadSingleAsync<T>();
             public virtual Task<T> ReadSingleOrDefaultAsync<T>() => _gridReader.ReadSingleOrDefaultAsync<T>();
 
-            public void Dispose() => _gridReader?.Dispose();
+            public virtual void Dispose() => _gridReader?.Dispose();
         }
     }
 }
